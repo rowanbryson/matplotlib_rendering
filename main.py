@@ -2,15 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from transformers import *
 from load_world import *
+import warnings
 
+SUPPRESS_WARNINGS = True
 WALKING_SPEED = 0.5 # units per input
 TURNING_SPEED = 10 # deg per input
+FOCAL_LENGTH = 2
+
+if SUPPRESS_WARNINGS:
+    warnings.filterwarnings('ignore')
 
 # set initial camera position
 camera_origin = np.array([0, 0.5, 0, 1], dtype=np.float64)
 camera_yaw = 0
 camera_pitch = 0
-focal_length = 2
 
 world = world1()
 
@@ -18,6 +23,9 @@ world = world1()
 plt.ion()
 fig = plt.figure()
 ax = fig.add_subplot(111)
+# get rid of the numbers on the axes
+ax.set_xticks([])
+ax.set_yticks([])
 ax.set_xlim(-1, 1)
 ax.set_ylim(-1, 1)
 ax.set_aspect('equal')
@@ -39,7 +47,7 @@ print()
 
 while True:
     # get the world to screen transformation
-    world_to_screen_transform = world_to_screen(camera_pitch, camera_yaw, camera_origin, focal_length)
+    world_to_screen_transform = world_to_screen(camera_pitch, camera_yaw, camera_origin, FOCAL_LENGTH)
 
     # transform the world to screen coordinates
     homogenous_screen_coords = world_to_screen_transform @ world
