@@ -39,7 +39,7 @@ def world1():
 
 
     # stack the world with the NaN columns
-    nan_col = np.full((4, 1), np.nan)
+    nan_col = np.array([np.nan] * 3 + [1]).reshape(4, 1)
     nan_col_iter = cycle([nan_col])
     piece_then_nan = chain.from_iterable(zip(world, nan_col_iter))
 

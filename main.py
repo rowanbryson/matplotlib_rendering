@@ -30,6 +30,13 @@ walking_deltas = {
     'd': np.array([WALKING_SPEED, 0, 0, 1], dtype=np.float64).T
 }
 
+# print instructions
+print('Enter characters to move the camera:')
+print('\twasd to move forward, backward, left, right')
+print('\tqe to turn left, right')
+print('\trf to look up, down')
+print()
+
 while True:
     # get the world to screen transformation
     world_to_screen_transform = world_to_screen(camera_pitch, camera_yaw, camera_origin, focal_length)
@@ -48,7 +55,7 @@ while True:
     fig.canvas.flush_events()
 
     # handle events
-    user_input = input()
+    user_input = input('Enter a command:')
     if user_input == '':
         continue
     user_input = user_input[-1]
