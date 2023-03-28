@@ -1,8 +1,10 @@
-import numpy as np
-from transformers import *
+"""This module contains the function to load the world."""
 from itertools import chain, cycle
+import numpy as np
+from transformers import translate, rotate_x, scale
 
 def world1():
+    """Load the world and return it as a 4xN array of points."""
 
     world = []
     # load the cube
@@ -20,8 +22,6 @@ def world1():
     world.append(translate(*cube_origin) @ cube)
     cube_origin = np.array([2, 2.5, 7])
     world.append(translate(*cube_origin) @ cube)
-
-
 
     # load the ground
     carpet = np.loadtxt('assets/carpet.csv', delimiter=',')
@@ -46,5 +46,3 @@ def world1():
     world = np.hstack(list(piece_then_nan))
 
     return world
-
-
