@@ -8,8 +8,9 @@ SUPPRESS_WARNINGS = True
 WALKING_SPEED = 0.5 # units per input
 TURNING_SPEED = 10 # deg per input
 FOCAL_LENGTH = 2
-SCREEN_X_SIZE = 2
-SCREEN_Y_SIZE = 2
+SCREEN_X_SIZE = 16/9
+
+SCREEN_Y_SIZE = 1
 
 if SUPPRESS_WARNINGS:
     warnings.filterwarnings('ignore')
@@ -50,6 +51,7 @@ ax.set_yticks([])
 ax.set_xlim([-SCREEN_X_SIZE / 2, SCREEN_X_SIZE / 2])
 ax.set_ylim([-SCREEN_Y_SIZE / 2, SCREEN_Y_SIZE / 2])
 ax.set_aspect('equal')
+plt.tight_layout()
 line = ax.plot([0], [0], '-')[0]
 
 
