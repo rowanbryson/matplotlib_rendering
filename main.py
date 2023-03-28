@@ -8,6 +8,8 @@ SUPPRESS_WARNINGS = True
 WALKING_SPEED = 0.5 # units per input
 TURNING_SPEED = 10 # deg per input
 FOCAL_LENGTH = 2
+SCREEN_X_SIZE = 2
+SCREEN_Y_SIZE = 2
 
 if SUPPRESS_WARNINGS:
     warnings.filterwarnings('ignore')
@@ -19,17 +21,6 @@ camera_pitch = 0
 
 world = world1()
 
-# initialize matplotlib screen
-plt.ion()
-fig = plt.figure()
-ax = fig.add_subplot(111)
-# get rid of the numbers on the axes
-ax.set_xticks([])
-ax.set_yticks([])
-ax.set_xlim(-1, 1)
-ax.set_ylim(-1, 1)
-ax.set_aspect('equal')
-line = ax.plot([0], [0], '-')[0]
 
 walking_deltas = {
     'w': np.array([0, 0, WALKING_SPEED, 1], dtype=np.float64).T,
@@ -39,6 +30,29 @@ walking_deltas = {
 }
 
 # print instructions
+
+print('When you are ready, a matplotlib window will open.')
+print('You will enter movement commands in this terminal window, and see the scene in the matplotlib window.')
+print()
+print('When the matplotlib window opens, set up the windows so both are visible.')
+print('!!! sometimes matplotlib is finicky and you have to enter a few movement commands for it to work properly !!!')
+print()
+print('Press enter to continue...')
+input()
+
+# initialize matplotlib screen
+plt.ion()
+fig = plt.figure()
+ax = fig.add_subplot(111)
+# get rid of the numbers on the axes
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_xlim([-SCREEN_X_SIZE / 2, SCREEN_X_SIZE / 2])
+ax.set_ylim([-SCREEN_Y_SIZE / 2, SCREEN_Y_SIZE / 2])
+ax.set_aspect('equal')
+line = ax.plot([0], [0], '-')[0]
+
+
 print('Enter characters to move the camera:')
 print('\twasd to move forward, backward, left, right')
 print('\tqe to turn left, right')
